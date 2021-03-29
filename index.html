@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="mainDiv"></div>
+</body>
+<script>
+
+    const mainDiv = document.getElementById("mainDiv");
+
+    const boxes = [];
+    let maxHeight =mainDiv.clientHeight -90;
+    let maxWidth = mainDiv.clientWidth -90;
+
+    function boxGenerator(num) {
+
+
+        for (i = 0; i < num; i++) {
+            const dx = dxGenerator();
+            const dy = dyGenerator();
+            const aDiv = document.createElement("div");
+            mainDiv.append(aDiv);
+            aDiv.setAttribute("name", `aDiv${i}`);
+            aDiv.setAttribute("style", `position:absolute; top:${dy}px; left:${dx}px;
+             height:80px; width:80px; border-radius:50px;
+              background-color:#80dbf1;`);
+            boxes.push(aDiv);
+
+            moveDiv(2, 2, dx, dy, aDiv);
+
+        }
+
+    }
+
+    console.log(boxes);
+    // console.log(dxGenerator());
+    boxGenerator(8);
+
+    function dxGenerator() {
+        // finds number between 1 to maxWidth
+        return Math.floor(Math.random() * maxWidth) + 1;
+    }
+
+    function dyGenerator() {
+        // finds number between 1 to maxheight
+        return Math.floor(Math.random() * maxHeight) + 1;
+
+    }
+
+    
+    // function moveDiv(x, y, dx, dy, aDiv) {
+    //     setInterval(() => {
+    //         dx +=x;
+    //         aDiv.style.left = dx + 'px';
+
+    //         dy +=y;
+    //         aDiv.style.top = dy + 'px';
+
+    //         if(dx > maxWidth || dx < 0){
+    //             // x=-x;
+    //             x=x* -1;
+    //         }
+    //         if(dy > maxHeight || dx < 0){
+    //             // y=-y;
+    //             y=y* -1;
+    //         }
+    //     },5);
+
+    // }
+
+
+    function moveDiv(valueX, valueY, dx, dy, aDiv) {
+        setInterval(() => {
+            dx += valueX;
+            aDiv.style.left = dx + "px";
+
+            dy += valueY;
+            aDiv.style.top = dy + "px";
+
+            if (dx > maxWidth || dx < 0) {
+               
+                valueX = -valueX;
+  
+                
+            }
+            if (dy > maxHeight || dy < 0) {
+                valueY = -valueY;
+                
+            }
+        }, 5);
+       
+        
+    }
+
+
+
+</script>
+
+</html>
