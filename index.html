@@ -17,10 +17,13 @@
     const mainDiv = document.getElementById("mainDiv");
 
     const boxes = [];
-    let maxHeight =mainDiv.clientHeight -90;
-    let maxWidth = mainDiv.clientWidth -90;
+    var Xpos = new Array();
+    var Ypos =new Array();
+    let maxHeight = mainDiv.clientHeight - 90;
+    let maxWidth = mainDiv.clientWidth - 90;
 
     function boxGenerator(num) {
+        number = num;
 
 
         for (i = 0; i < num; i++) {
@@ -29,12 +32,18 @@
             const aDiv = document.createElement("div");
             mainDiv.append(aDiv);
             aDiv.setAttribute("name", `aDiv${i}`);
+
+
+
             aDiv.setAttribute("style", `position:absolute; top:${dy}px; left:${dx}px;
              height:80px; width:80px; border-radius:50px;
               background-color:#80dbf1;`);
             boxes.push(aDiv);
 
-            moveDiv(2, 2, dx, dy, aDiv);
+            moveDiv(2, 2, dx, dy, aDiv, i);
+            // console.log(`${dy}px`);
+            // console.log(Xpos);
+
 
         }
 
@@ -42,7 +51,7 @@
 
     console.log(boxes);
     // console.log(dxGenerator());
-    boxGenerator(8);
+    boxGenerator(5);
 
     function dxGenerator() {
         // finds number between 1 to maxWidth
@@ -55,7 +64,7 @@
 
     }
 
-    
+
     // function moveDiv(x, y, dx, dy, aDiv) {
     //     setInterval(() => {
     //         dx +=x;
@@ -77,7 +86,7 @@
     // }
 
 
-    function moveDiv(valueX, valueY, dx, dy, aDiv) {
+    function moveDiv(valueX, valueY, dx, dy, aDiv, index) {
         setInterval(() => {
             dx += valueX;
             aDiv.style.left = dx + "px";
@@ -86,18 +95,40 @@
             aDiv.style.top = dy + "px";
 
             if (dx > maxWidth || dx < 0) {
-               
+
                 valueX = -valueX;
-  
-                
+
+
             }
             if (dy > maxHeight || dy < 0) {
                 valueY = -valueY;
-                
+
             }
-        }, 5);
-       
-        
+
+            Xpos[index] = dx;
+            Ypos[index] = dy;
+            // var divHeight = aDiv.clientHeight;
+            // var divWidth = aDiv.clientWidth;
+    
+            for (var i = 0; i < number; i++) {
+
+                if (!(i === index)) {
+                    if ((Xpos[i] < dx + 50) && (Xpos[i] + 50 > dx)
+                        && (Ypos[i] < dy + 50) && (Ypos[i] + 50 > dy)) {
+                        valueX = -valueX;
+                        
+                    }
+                }
+            }
+
+
+            // console.log(number);
+            // console.log(index);
+        }, 10);
+
+
+
+        // console.log(aDiv.clientHeight);
     }
 
 
