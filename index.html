@@ -19,8 +19,8 @@
     const boxes = [];
     var Xpos = new Array();
     var Ypos =new Array();
-    let maxHeight = mainDiv.clientHeight - 90;
-    let maxWidth = mainDiv.clientWidth - 90;
+    // let maxHeight = mainDiv.clientHeight - 90;
+    // let maxWidth = mainDiv.clientWidth - 90;
 
     function boxGenerator(num) {
         number = num;
@@ -36,7 +36,7 @@
 
 
             aDiv.setAttribute("style", `position:absolute; top:${dy}px; left:${dx}px;
-             height:80px; width:80px; border-radius:50px;
+             height:30px; width:30px; border-radius:50px;
               background-color:#80dbf1;`);
             boxes.push(aDiv);
 
@@ -55,12 +55,12 @@
 
     function dxGenerator() {
         // finds number between 1 to maxWidth
-        return Math.floor(Math.random() * maxWidth) + 1;
+        return Math.floor(Math.random() * 770) + 1;
     }
 
     function dyGenerator() {
         // finds number between 1 to maxheight
-        return Math.floor(Math.random() * maxHeight) + 1;
+        return Math.floor(Math.random() * 470) + 1;
 
     }
 
@@ -94,13 +94,13 @@
             dy += valueY;
             aDiv.style.top = dy + "px";
 
-            if (dx > maxWidth || dx < 0) {
+            if (dx > 770 || dx < 0) {
 
                 valueX = -valueX;
 
 
             }
-            if (dy > maxHeight || dy < 0) {
+            if (dy > 470 || dy < 0) {
                 valueY = -valueY;
 
             }
@@ -113,10 +113,9 @@
             for (var i = 0; i < number; i++) {
 
                 if (!(i === index)) {
-                    if ((Xpos[i] < dx + 50) && (Xpos[i] + 50 > dx)
-                        && (Ypos[i] < dy + 50) && (Ypos[i] + 50 > dy)) {
+                    if ((Xpos[i] < dx + 30) && (Xpos[i] + 30 > dx)
+                        && (Ypos[i] < dy + 30) && (Ypos[i] + 30 > dy)) {
                         valueX = -valueX;
-                        
                     }
                 }
             }
